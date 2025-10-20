@@ -1,31 +1,27 @@
 import { InvalidValueError } from "../Errors/InvalidValueError";
-import { Id } from "../ValueObjects/Id";
+import { User, UserProps } from "./User";
 
 type Address = {
     street: string,
     number: number
 }
 
-export interface StoreProps {
-    id: Id,
+export interface StoreProps extends UserProps{
     name: string,
     address: Address
 }
 
-export class Store {
+export class Store extends User{
     constructor(private storeProps: StoreProps){
+        super(storeProps);
         this.validateAddress(storeProps.address);
     }
 
-    public id(): Id {
-        return this.storeProps.id;
-    }
-
-    public name(): string {
+    get name(): string {
         return this.storeProps.name;
     }
 
-    public address(): Address {
+    get address(): Address {
         return this.storeProps.address;
     }
 
@@ -38,7 +34,7 @@ export class Store {
             throw new InvalidValueError("Você deve inserir o nome da rua")
         }
         if (!address.number) {
-            throw new InvalidValueError("Você deve inserri um número")
+            throw new InvalidValueError("Você deve inserir um número")
         }
     }
 
