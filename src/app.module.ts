@@ -14,10 +14,14 @@ import { AddProductItemUseCase } from './Core/Domain/UseCases/AddProductItemUseC
 import { GetAllProductsUseCase } from './Core/Domain/UseCases/GetAllProductsUseCase';
 import { GetArtisanUseCase } from './Core/Domain/UseCases/GetArtisanUseCase';
 import { ChunkMapper } from './Infrastructure/Mappers/SaleChunkMapper';
+import { QRCodeGenerator } from './Infrastructure/QRCode/qrCodeGenerator';
+import { GetProductController } from './Web/Controllers/get-product-controller';
+import { GetProductUseCase } from './Core/Domain/UseCases/GetProductUseCase';
+import { GetAllProductsController } from './Web/Controllers/get-allProducts-controller';
 
 @Module({
   imports: [],
-  controllers: [CreateArtisanController, SendSaleController, CreateProductController],
+  controllers: [CreateArtisanController, SendSaleController, CreateProductController, GetProductController, GetAllProductsController],
   providers: [
     PrismaService, 
     AddArtisanUseCase, 
@@ -26,6 +30,8 @@ import { ChunkMapper } from './Infrastructure/Mappers/SaleChunkMapper';
     GetAllProductsUseCase,
     GetArtisanUseCase,
     ChunkMapper,
+    QRCodeGenerator,
+    GetProductUseCase,
     {
       provide: "IntSaleRepository",
       useClass: SaleRepository
