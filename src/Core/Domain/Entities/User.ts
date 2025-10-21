@@ -2,7 +2,7 @@ import { InvalidValueError } from "../Errors/InvalidValueError";
 import { Id } from "../ValueObjects/Id";
 
 export interface UserProps {
-    id: Id,
+    id?: Id,
     username: string,
     password: string
 }
@@ -13,7 +13,7 @@ export class User {
         this.validatePassword(userProps.password);
     }
 
-    protected get id(): Id {
+    protected get id(): Id | undefined{
         return this.userProps.id;
     }
 

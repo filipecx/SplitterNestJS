@@ -26,14 +26,15 @@ export class Store extends User{
     }
 
     public changeAddress(newAddress: Address) {
+        this.validateAddress(newAddress);
         this.storeProps.address = newAddress;
     }
 
     private validateAddress(address: Address) {
-        if (address.street.length <= 0) {
+        if (address.street.length <= 1) {
             throw new InvalidValueError("Você deve inserir o nome da rua")
         }
-        if (!address.number) {
+        if (address.number < 1) {
             throw new InvalidValueError("Você deve inserir um número")
         }
     }
