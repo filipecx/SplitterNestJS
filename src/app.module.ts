@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PrismaService } from './prisma/prisma.service';
 import { ArtisanRepository } from './Infrastructure/Repositories/ArtisanRepository';
-import { CreateArtisanController } from './Web/Controllers/create-artisan-controller';
+import { CreateArtisanController } from './Web/Controllers/Artisan/create-artisan-controller';
 import { AddArtisanUseCase } from './Core/Domain/UseCases/AddArtisanUseCase';
 import { RegisterSaleUseCase } from './Core/Domain/UseCases/Sales/RegisterSaleUseCase';
 import { SaleRepository } from './Infrastructure/Repositories/SaleRepository';

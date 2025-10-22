@@ -1,9 +1,9 @@
 import { Body, Controller, Inject, Param, Put } from "@nestjs/common";
-import type { CreateArtisanDto } from "../DTOS/Artisan/CreateArtisanDto";
+import type { CreateArtisanDto } from "../../DTOS/Artisan/CreateArtisanDto";
 import { UpdateArtisanUseCase } from "src/Core/Domain/UseCases/UpdateArtisanUseCase";
 import { Artisan } from "src/Core/Domain/Entities/Artisan";
 import { Id } from "src/Core/Domain/ValueObjects/Id";
-import { ResponseArtisanDto } from "../DTOS/Artisan/ResponseArtisanDto";
+import { ResponseArtisanDto } from "../../DTOS/Artisan/ResponseArtisanDto";
 
 @Controller()
 export class UpdateArtisanController {
