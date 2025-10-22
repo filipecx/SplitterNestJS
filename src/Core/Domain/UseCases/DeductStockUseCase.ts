@@ -1,10 +1,12 @@
-import { IntProductRepository } from "../../../Infrastructure/Interfaces/IntProductRepository";
+import { Inject, Injectable } from "@nestjs/common";
+import type { IntProductRepository } from "../../../Infrastructure/Interfaces/IntProductRepository";
 import { ProductItem } from "../Entities/ProductItem";
 import { Id } from "../ValueObjects/Id";
 import { NotFoundError } from "./Errors/NotFoundError";
 
+@Injectable()
 export class DeductStockUseCase {
-    constructor(private repository: IntProductRepository){}
+    constructor(@Inject('IntProductRepository') private repository: IntProductRepository){}
     async execute(id: Id, quantity: number): Promise<ProductItem> {
         const product = await this.repository.get(id);
         if (!product) {

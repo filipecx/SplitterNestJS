@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { Artisan } from "src/Core/Domain/Entities/Artisan";
-import type { CreateArtisanDto } from "../DTOS/Artisan/CreateArtisanDto";
+import type { CreateArtisanDto } from "../../DTOS/Artisan/CreateArtisanDto";
 import { AddArtisanUseCase } from "src/Core/Domain/UseCases/AddArtisanUseCase";
-import type { ResponseArtisanDto } from "../DTOS/Artisan/ResponseArtisanDto";
+import type { ResponseArtisanDto } from "../../DTOS/Artisan/ResponseArtisanDto";
 import { Id } from "src/Core/Domain/ValueObjects/Id";
 
 @Controller('artisans')
