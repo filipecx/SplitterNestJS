@@ -1,8 +1,11 @@
-import { IntArtisanRepository } from '../../../Infrastructure/Interfaces/IntArtisanRepository'
+import { Inject, Injectable } from '@nestjs/common';
+import type { IntArtisanRepository } from '../../../Infrastructure/Interfaces/IntArtisanRepository'
 import { Id } from '../ValueObjects/Id';
 import { NotFoundError } from './Errors/NotFoundError'
+
+@Injectable()
 export class DeleteArtisanUseCase {
-    constructor(private repository: IntArtisanRepository){}
+    constructor(@Inject('IntArtisanRepository') private repository: IntArtisanRepository){}
 
     async execute(id: Id): Promise<void> {
         const existes = this.repository.getArtisan(id);

@@ -1,9 +1,11 @@
-import { IntProductRepository } from "../../../Infrastructure/Interfaces/IntProductRepository";
+import { Inject, Injectable } from "@nestjs/common";
+import type { IntProductRepository } from "../../../Infrastructure/Interfaces/IntProductRepository";
 import { Id } from "../ValueObjects/Id";
 import { NotFoundError } from "./Errors/NotFoundError";
 
+@Injectable()
 export class DeleteProductUseCase {
-    constructor(private repository: IntProductRepository){}
+    constructor(@Inject('IntProductRepository') private repository: IntProductRepository){}
 
     async execute(id: Id): Promise<any> {
         const product = await this.repository.get(id);
