@@ -1,5 +1,5 @@
 import { Controller, Get, Inject, Param } from "@nestjs/common";
-import { ResponseProductDTO } from '../DTOS/Product/ResponseProductDTO';
+import { ResponseProductDTO } from '../../DTOS/Product/ResponseProductDTO';
 import { GetProductUseCase } from "src/Core/Domain/UseCases/GetProductUseCase";
 import { ProductItem } from "src/Core/Domain/Entities/ProductItem";
 import { Id } from "src/Core/Domain/ValueObjects/Id";

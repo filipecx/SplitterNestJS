@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
-import type { CreateProductDTO } from "../DTOS/Product/CreateProductDTO";
+import type { CreateProductDTO } from "../../DTOS/Product/CreateProductDTO";
 import { AddProductItemUseCase } from "src/Core/Domain/UseCases/AddProductItemUseCase";
 import { ProductItem } from "src/Core/Domain/Entities/ProductItem";
 import { GetAllProductsUseCase } from "src/Core/Domain/UseCases/GetAllProductsUseCase";

@@ -6,9 +6,9 @@ import { Id } from "src/Core/Domain/ValueObjects/Id";
 import { ResponseArtisanDto } from "../../DTOS/Artisan/ResponseArtisanDto";
 
 @Controller('artisans')
-export class UpdateArtisanController {
+export class UpdateArtisanStatusController {
     constructor(@Inject('UpdateArtisanUseCase') private useCase: UpdateArtisanUseCase){}
-    @Put(':id')
+    @Put('changeStatus/:id')
     async handle(@Param('id') id: string, @Body() artisanData: CreateArtisanDto): Promise<ResponseArtisanDto> {
         if (!artisanData) {
             throw new Error("No artisan data found")
