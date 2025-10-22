@@ -8,7 +8,7 @@ import { SaleRepository } from './Infrastructure/Repositories/SaleRepository';
 import { ProductRepository } from './Infrastructure/Repositories/ProductRepository';
 import { PaymentMethodFactory } from './Infrastructure/Factories/PaymentMethodFactory';
 import { RabbitProducer } from './Infrastructure/Communication/RabbitMQPublisher';
-import { SendSaleController } from './Web/Controllers/send-sale-controller';
+import { SendSaleController } from './Web/Controllers/Sale/send-sale-controller';
 import { CreateProductController } from './Web/Controllers/Product/create-product-controller';
 import { AddProductItemUseCase } from './Core/Domain/UseCases/AddProductItemUseCase';
 import { GetAllProductsUseCase } from './Core/Domain/UseCases/GetAllProductsUseCase';
@@ -33,6 +33,11 @@ import { DeleteProductController } from './Web/Controllers/Product/delete-produc
 import { DeleteProductUseCase } from './Core/Domain/UseCases/DeleteProductUseCase';
 import { DeductStockQuantityController } from './Web/Controllers/Product/deduct-stock-quantity-controller';
 import { DeductStockUseCase } from './Core/Domain/UseCases/DeductStockUseCase';
+import { GetSaleController } from './Web/Controllers/Sale/get-sale-controller';
+import { GetSaleByIdUseCase } from './Core/Domain/UseCases/Sales/GetSaleByIdUseCase';
+import { GetAllSalesUseCase } from './Core/Domain/UseCases/Sales/GetAllSalesUseCase';
+import { GetAllSaleController } from './Web/Controllers/Sale/get-all-sales-controller';
+import { GetSalesByStoreIdUseCase } from './Core/Domain/UseCases/Sales/GetSalesByStoreIdUseCase';
 
 @Module({
   imports: [],
@@ -44,6 +49,8 @@ import { DeductStockUseCase } from './Core/Domain/UseCases/DeductStockUseCase';
     GetAllArtisanController,
     GetAllActiveArtisanController, 
     SendSaleController, 
+    GetSaleController,
+    GetAllSaleController,
     CreateProductController, 
     GetProductController, 
     GetAllProductsController,
@@ -60,6 +67,9 @@ import { DeductStockUseCase } from './Core/Domain/UseCases/DeductStockUseCase';
     DeleteArtisanUseCase,
     UpdateArtisanUseCase,
     RegisterSaleUseCase,
+    GetSaleByIdUseCase,
+    GetAllSalesUseCase,
+    GetSalesByStoreIdUseCase,
     AddProductItemUseCase,
     GetAllProductsUseCase,
     UpdateProductUseCase,

@@ -74,7 +74,7 @@ export class SaleRepository implements IntSaleRepository {
                         isActive: chunk.artisan.isActive
 
                     }),
-                    items: chunk.items.map((item) => 
+                    items: chunk.items.map((item) =>
                         new SaleItem({
                             productId: new Id(item.productId?.value ?? item.productId),
                             quantity: item.quantity,
@@ -87,11 +87,152 @@ export class SaleRepository implements IntSaleRepository {
 
         return returnSale;
     }
-    getAllSales(): Promise<Sale[]> {
-        throw new Error("Method not implemented.");
+
+    async getAllSales(): Promise<Sale[]> {
+
+        const salesPrisma: any[] = await this.prisma.sales.findMany();
+
+
+
+        const returnSales: Sale[] = salesPrisma.map((salePrisma) => {
+            let parseado: any[] = [];
+            if (typeof salePrisma.saleChunks === 'string') {
+                parseado = JSON.parse(salePrisma.saleChunks);
+
+            }
+            return new Sale({
+                id: new Id(salePrisma.id),
+                storeId: new Id(salePrisma.storeId),
+                employeeId: new Id(salePrisma.employeeId),
+                paymentMethod: new CreditCardMethod(1, 1),
+                totalGrossAmount: salePrisma.totalGrossAmount,
+                totalComission: salePrisma.totalComission,
+                saleChunks: parseado.map((chunk) =>
+                    new SaleChunk({
+                        artisan: new Artisan({
+                            id: new Id(chunk.artisan.id?.value ?? chunk.artisan.id),
+                            storeId: new Id(chunk.artisan.storeId),
+                            name: chunk.artisan.name,
+                            email: chunk.artisan.email,
+                            comissionRate: chunk.artisan.comissionRate,
+                            isActive: chunk.artisan.isActive
+
+                        }),
+                        items: chunk.items.map((item) =>
+                            new SaleItem({
+                                productId: new Id(item.productId?.value ?? item.productId),
+                                quantity: item.quantity,
+                                unitPrice: item.unitPrice
+                            })
+                        )
+                    }))
+
+            })
+        });
+
+        return returnSales;
+
     }
-    getSale(id: Id): Promise<Sale> | null {
-        throw new Error("Method not implemented.");
+
+    async getSale(id: Id): Promise<Sale> {
+        if (!id) {
+            throw new Error("No id in the request")
+        }
+
+        const salePrisma = await this.prisma.sales.findUnique({
+            where: {
+                id: id.getValue()!
+            }
+        });
+        if (!salePrisma) {
+            throw new Error("No sale found")
+        }
+        let parseado: any[] = [];
+        if (typeof salePrisma.saleChunks === 'string') {
+            parseado = JSON.parse(salePrisma.saleChunks)
+
+        }
+
+        const returnSale: Sale = new Sale({
+            id: new Id(salePrisma.id),
+            storeId: new Id(salePrisma.storeId),
+            employeeId: new Id(salePrisma.employeeId),
+            paymentMethod: new CreditCardMethod(1, 1),
+            totalGrossAmount: salePrisma.totalGrossAmount,
+            totalComission: salePrisma.totalComission,
+            saleChunks: parseado.map((chunk) =>
+                new SaleChunk({
+                    artisan: new Artisan({
+                        id: new Id(chunk.artisan.id?.value ?? chunk.artisan.id),
+                        storeId: new Id(chunk.artisan.storeId),
+                        name: chunk.artisan.name,
+                        email: chunk.artisan.email,
+                        comissionRate: chunk.artisan.comissionRate,
+                        isActive: chunk.artisan.isActive
+
+                    }),
+                    items: chunk.items.map((item) =>
+                        new SaleItem({
+                            productId: new Id(item.productId?.value ?? item.productId),
+                            quantity: item.quantity,
+                            unitPrice: item.unitPrice
+                        })
+                    )
+                }))
+
+        });
+
+        return returnSale;
+
+
+    }
+
+    async getSalesByStoreId(storeId: Id): Promise<Sale[]> {
+        const salesPrisma: any[] = await this.prisma.sales.findMany({
+            where: {
+                storeId: storeId.getValue()
+            }
+        });
+
+
+
+        const returnSales: Sale[] = salesPrisma.map((salePrisma) => {
+            let parseado: any[] = [];
+            if (typeof salePrisma.saleChunks === 'string') {
+                parseado = JSON.parse(salePrisma.saleChunks);
+
+            }
+            return new Sale({
+                id: new Id(salePrisma.id),
+                storeId: new Id(salePrisma.storeId),
+                employeeId: new Id(salePrisma.employeeId),
+                paymentMethod: new CreditCardMethod(1, 1),
+                totalGrossAmount: salePrisma.totalGrossAmount,
+                totalComission: salePrisma.totalComission,
+                saleChunks: parseado.map((chunk) =>
+                    new SaleChunk({
+                        artisan: new Artisan({
+                            id: new Id(chunk.artisan.id?.value ?? chunk.artisan.id),
+                            storeId: new Id(chunk.artisan.storeId),
+                            name: chunk.artisan.name,
+                            email: chunk.artisan.email,
+                            comissionRate: chunk.artisan.comissionRate,
+                            isActive: chunk.artisan.isActive
+
+                        }),
+                        items: chunk.items.map((item) =>
+                            new SaleItem({
+                                productId: new Id(item.productId?.value ?? item.productId),
+                                quantity: item.quantity,
+                                unitPrice: item.unitPrice
+                            })
+                        )
+                    }))
+
+            })
+        });
+
+        return returnSales;
     }
 
 }
