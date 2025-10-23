@@ -22,7 +22,7 @@ export class SaleChunk {
 
     getStoreComission(): number {
         const rate = this.saleChunkProps.artisan.comissionRate;
-        return this.getGrossAmount() * rate;
+        return this.getGrossAmount() / rate;
     }
 
      public getArtisanPayoutBase(): number {
