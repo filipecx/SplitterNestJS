@@ -5,7 +5,7 @@ import { Sale } from "../../Entities/Sale";
 
 @Injectable()
 export class GetSalesByStoreIdUseCase {
-    constructor(@Inject('IntSalesRepository') private repository: IntSaleRepository){}
+    constructor(@Inject('IntSaleRepository') private repository: IntSaleRepository){}
 
     async execute(storeId: Id): Promise<Sale[]> {
 
