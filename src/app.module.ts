@@ -38,6 +38,7 @@ import { GetSaleByIdUseCase } from './Core/Domain/UseCases/Sales/GetSaleByIdUseC
 import { GetAllSalesUseCase } from './Core/Domain/UseCases/Sales/GetAllSalesUseCase';
 import { GetAllSaleController } from './Web/Controllers/Sale/get-all-sales-controller';
 import { GetSalesByStoreIdUseCase } from './Core/Domain/UseCases/Sales/GetSalesByStoreIdUseCase';
+import { GetSaleByStoreIdController } from './Web/Controllers/Sale/get-sales-by-storeid-controller';
 
 @Module({
   imports: [],
@@ -51,6 +52,7 @@ import { GetSalesByStoreIdUseCase } from './Core/Domain/UseCases/Sales/GetSalesB
     SendSaleController, 
     GetSaleController,
     GetAllSaleController,
+    GetSaleByStoreIdController,
     CreateProductController, 
     GetProductController, 
     GetAllProductsController,
