@@ -7,7 +7,7 @@ import { ResponseArtisanDto } from "../../DTOS/Artisan/ResponseArtisanDto";
 
 @Controller('artisans')
 export class UpdateArtisanStatusController {
-    constructor(@Inject('UpdateArtisanUseCase') private useCase: UpdateArtisanUseCase){}
+    constructor(private useCase: UpdateArtisanUseCase){}
     @Put('changeStatus/:id')
     async handle(@Param('id') id: string, @Body() artisanData: CreateArtisanDto): Promise<ResponseArtisanDto> {
         if (!artisanData) {

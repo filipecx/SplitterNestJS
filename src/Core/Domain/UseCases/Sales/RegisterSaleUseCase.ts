@@ -86,13 +86,23 @@ export class RegisterSaleUseCase {
         const createdSale = await this.repository.create(newSale);
 
         for (const chunk of createdSale.saleChunks) {
+            
             if (!chunk.artisan.id) {
                 throw new NotFoundError("No artisan found by this id");
             }
+             if (!createdSale.id) {
+                throw new NotFoundError("No artisan found by this id");
+            }
+
             const payload = {
+                saleId: createdSale.id.getValue(),
+                storeId: createdSale.storeId.getValue(),
                 artisanId: chunk.artisan.id.getValue(),
-                totalGrossAmount: chunk.getGrossAmount(),
-                paymentType: createdSale.paymentMethod
+                artisanName: chunk.artisan.name,
+                artisanEmail: chunk.artisan.email,
+                grossAmount: chunk.getGrossAmount(),
+                commissionRate: chunk.getStoreComission(),
+                paymentType: createdSale.paymentMethod.type
             };
             await this.rabbit.publish(payload);
         }

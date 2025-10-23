@@ -6,7 +6,7 @@ import { GetAllProductsUseCase } from "src/Core/Domain/UseCases/GetAllProductsUs
 
 @Controller('products')
 export class GetAllProductsController {
-    constructor(@Inject() private getAllProducstUsecase: GetAllProductsUseCase){}
+    constructor(private getAllProducstUsecase: GetAllProductsUseCase){}
 
     @Get()
     async handle(): Promise<ResponseProductDTO[]> {

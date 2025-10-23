@@ -6,7 +6,7 @@ import { Id } from "src/Core/Domain/ValueObjects/Id";
 
 @Controller('products')
 export class GetProductController {
-    constructor(@Inject() private getProductUsecase: GetProductUseCase){}
+    constructor( private getProductUsecase: GetProductUseCase){}
 
     @Get(':id')
     async handle(@Param('id') id: string): Promise<ResponseProductDTO> {

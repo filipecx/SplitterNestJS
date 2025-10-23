@@ -6,7 +6,7 @@ import { ResponseProductDTO } from "src/Web/DTOS/Product/ResponseProductDTO";
 
 @Controller('products')
 export class DeductStockQuantityController {
-    constructor(@Inject() private useCase: DeductStockUseCase){}
+    constructor(private useCase: DeductStockUseCase){}
     @Put(':id')
     async handle(@Param('id') id: string, @Body() quantity: number): Promise<ResponseProductDTO> {
         if (id.length < 1 || quantity < 1) {
