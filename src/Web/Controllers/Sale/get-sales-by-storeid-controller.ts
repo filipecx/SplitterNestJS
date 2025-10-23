@@ -5,9 +5,9 @@ import { Id } from "src/Core/Domain/ValueObjects/Id";
 import { ResponseSaleDTO } from "src/Web/DTOS/Sale/SaleResponseDTO";
 
 @Controller('sales')
-export class GetAllSaleController {
+export class GetSaleByStoreIdController {
 
-    constructor(@Inject() private useCase: GetSalesByStoreIdUseCase){}
+    constructor(private useCase: GetSalesByStoreIdUseCase){}
 
     @Get('/storeid/:id')
     async handle(@Param('id') id: string): Promise<ResponseSaleDTO[]> {

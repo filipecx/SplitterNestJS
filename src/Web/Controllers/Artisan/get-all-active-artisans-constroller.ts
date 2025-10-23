@@ -4,7 +4,7 @@ import { ResponseArtisanDto } from "src/Web/DTOS/Artisan/ResponseArtisanDto";
 
 @Controller('artisans')
 export class GetAllActiveArtisanController {
-    constructor(@Inject() private useCase: GetAllAcitveArtisansUseCase){}
+    constructor( private useCase: GetAllAcitveArtisansUseCase){}
     @Get('/active')
     async handle(): Promise<ResponseArtisanDto[]> {
         const artisansList = await this.useCase.execute();

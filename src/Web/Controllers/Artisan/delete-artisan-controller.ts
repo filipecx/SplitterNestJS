@@ -4,7 +4,7 @@ import { Id } from "src/Core/Domain/ValueObjects/Id";
 
 @Controller('artisans')
 export class DeleteArtisanController {
-    constructor(@Inject('DeleteArtisanUseCase') private useCase: DeleteArtisanUseCase){}
+    constructor(private useCase: DeleteArtisanUseCase){}
 
     @Delete(':id')
     async handle(@Param('id') id: string): Promise<boolean> {

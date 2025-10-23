@@ -6,7 +6,7 @@ import { ResponseSaleDTO } from "src/Web/DTOS/Sale/SaleResponseDTO";
 @Controller('sales')
 export class GetAllSaleController {
 
-    constructor(@Inject() private useCase: GetAllSalesUseCase){}
+    constructor(private useCase: GetAllSalesUseCase){}
 
     @Get()
     async handle(): Promise<ResponseSaleDTO[]> {

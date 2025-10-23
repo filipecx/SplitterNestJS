@@ -7,7 +7,7 @@ import { ResponseProductDTO } from "src/Web/DTOS/Product/ResponseProductDTO";
 
 @Controller('products')
 export class UpdateProductController {
-    constructor(@Inject() private useCase: UpdateProductUseCase){}
+    constructor(private useCase: UpdateProductUseCase){}
     @Put(':id')
     async handle(@Param('id') id: string, @Body() productData: RequestProductDTO): Promise<ResponseProductDTO> {
         const productToUpdate: ProductItem = new ProductItem({
