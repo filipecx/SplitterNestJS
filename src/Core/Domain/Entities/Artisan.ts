@@ -38,10 +38,7 @@ export class Artisan {
     }
 
     changeActive(): void {
-        if (this.isActive) {
-            this.artisanProps.isActive = false;
-        }
-        this.artisanProps.isActive = true;
+        this.artisanProps.isActive = !this.artisanProps.isActive;
     }
 
     changeComissionRate(newComissionRate: number): void {
