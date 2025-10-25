@@ -20,8 +20,8 @@ export class ArtisanMapper {
     static toDomainList(artisanData: any[]): Artisan[] {
         return artisanData.map((artisan) => {
             return new Artisan({
-                id: artisan.id,
-                storeId: artisan.storeId,
+                id: new Id(artisan.id),
+                storeId: new Id(artisan.storeId),
                 name: artisan.name,
                 email: artisan.email,
                 comissionRate: artisan.comissionRate,
