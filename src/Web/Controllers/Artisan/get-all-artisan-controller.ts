@@ -8,7 +8,9 @@ export class GetAllArtisanController {
     @Get()
     async handle(): Promise<ResponseArtisanDto[]> {
         const artisansList = await this.useCase.execute();
-
+        if (artisansList.length < 1) {
+            throw new Error("No artisan found")
+        }
         const responseList: ResponseArtisanDto[] = artisansList.map((artisan) => ({
             id: artisan.id?.getValue(),
             storeId: artisan.storeId.getValue(),
